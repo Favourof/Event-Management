@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage event</title>
+  <link rel="stylesheet" href="../css/landingPage.css">
+  <style>
+    .loader {
+      border: 10px solid rgb(196, 194, 194);
+      border-radius: 50%;
+      border-top: 10px solid #1a3a5c;
+      width: 80px;
+      height: 80px;
+      -webkit-animation: spin .8s linear infinite; /* Safari */
+      animation: spin .8s linear infinite;
+    }
+    
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    #loaderParent{
+      width: 100%;
+      height: 120vh;
+      background-color: #0000005b;
+      border: thin solid black;
+      position: absolute;
+    }
+    .loader{
+      margin: 300px auto;
+    }
+    </style>
+</head>
+<div id="loaderParent" hidden>
+  <div class="loader"></div>
+</div>
+
+
+<body>
+  <section id="section">
+    <nav class="nav2">
+      <img src="../images/x 1.png" alt="menu" onclick="bringIt()">
+      <p>Event Management</p>
+    </nav>
+    <div>
+      <button id="logout2">log out </button>
+      <p id="userEmail2"></p>
+    </div>
+    <div class="back">
+      <img src="../images/create event.png" alt="">
+    </div>
+
+  </section>
+  <section id="section1">
+    <nav>
+      <p>Event Management</p>
+      <div class="log">
+        <p id="userEmail"></p>
+        <button class="but1" id="logout">Log out</button>
+      </div>
+    </nav>
+    <nav class="nav2">
+      <img src="../images/menu 1.png" alt="menu" onclick="noneIt()">
+      <p>Event Management</p>
+    </nav>
+
+
+  </section>
+  <section id="section2">
+    <div class="special">
+      <p class="ev">Events</p>
+      <button class="but2" onclick="popUpCreateEvent()">Create New Event</button>
+    </div>
+    <div id="noEvent">
+      <img src="../images/create event.png" alt="">
+
+    </div>
+    <div id="eventdey">
+    
+      
+      <div id="myEvent">
+
+      </div>
+
+
+    </div>
+    </div>
+
+
+  </section>
+
+  <!-- create new event -->
+
+
+  <div id="create">
+    <div id="event">
+      <div class="formm">
+        <h4>CREATE NEW EVENT</h4>
+        <form name="CreateEvent">
+          <!-- <div class="formm"> -->
+          <div>
+            <p>Event Title</p>
+            <input type="text" name="title" placeholder="Some Event Title" required>
+          </div>
+          <div>
+            <p>Veune</p>
+            <input type="text" name="veune" placeholder="Some Location" required>
+          </div>
+          <div>
+            <p>Max participants</p>
+            <input type="number" name="max" placeholder="500" required>
+          </div>
+          <div>
+            <p>Alert point</p>
+            <input type="number" name="Alert" placeholder="355" required>
+          </div>
+          <div>
+            <p>number of Entries</p>
+            <input type="number" name="num" placeholder="7" required>
+          </div>
+          <div class="myBut">
+            <button class="but3" id="but3">Cancel</button>
+            <button type="submit" class="but3">Create</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <section class="createbutton">
+    <!-- <div class="but"> -->
+
+    <!-- </div> -->
+  </section>
+
+
+
+
+
+
+
+
+</body>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+  import { getFirestore, collection, getDocs, getDoc, addDoc, doc, updateDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+  const firebaseConfig = {
+    apiKey: "AIzaSyCalI8CYfC_Z-nRa3QIqghkcuSmv7E1Jow",
+    authDomain: "event-management-6803d.firebaseapp.com",
+    projectId: "event-management-6803d",
+    storageBucket: "event-management-6803d.appspot.com",
+    messagingSenderId: "78880001605",
+    appId: "1:78880001605:web:c46e3d5dd010eeda959d2c"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app)
+  const db = getFirestore(app)
+  const eventRef = collection(db, 'Event')
+  let userss;
+  let allEvent = []
+  let dell;
+
+  if (allEvent.length) {
+    noEvent.style.display = 'none'
+    eventdey.style.display = 'block'
+  } else {
+    noEvent.style.display = 'block'
+    eventdey.style.display = 'none'
+  }
+      //  checking current users
+
+  async function checkAuthStatus() {
+
+  
+    await onAuthStateChanged(auth, (currentUser) => {
+      loaderParent.hidden = false
+      if (currentUser) {
+        console.log('user is', currentUser);
+        userss = { ...currentUser }
+        userEmail.innerHTML = currentUser.email;
+        userEmail2.innerHTML = currentUser.email
+      } else {
+        userEmail.textContent = '';
+      }
+    })
+
+
+    async function getAllEventfromDB() {
+    const res = await getDocs(eventRef)
+    res.forEach((blog, i) => {
+      allEvent.push({ ...blog.data(), id: blog.id })
+
+    })
+    console.log(allEvent);
+ 
+    // displayAllBlog()
+
+   
+
+  }
+    getAllEventfromDB()
+   
+    setTimeout(() => {
+      loaderParent.hidden = true
+      displaydata()
+      if (allEvent.length) {
+        noEvent.style.display = 'none'
+        eventdey.style.display = 'block'
+      } else {
+        noEvent.style.display = 'block'
+        eventdey.style.display = 'none'
+      }
+    }, 5000);
+   
+
+
+  }
+
+
+            // logout user
+  async function logoutUser() {
+    try {
+      await signOut(auth)
+      alert('user log out')
+      window.location.href = '../LogIn.html'
+
+
+    } catch (error) {
+      console.log(error.message);
+    }
+
+  }
+
+
+            // create new event and adding them to fireBase
+  async function CreateEventTab(e) {
+    e.preventDefault();
+     
+    const title = CreateEvent.title.value
+    const veune = CreateEvent.veune.value
+    const max = CreateEvent.max.value
+    const Alert = CreateEvent.Alert.value
+    const num = CreateEvent.num.value
+    const user = userEmail2.innerHTML
+
+    console.log({ title, veune, max, Alert, num });
+    try {
+      const saveEvent = addDoc(eventRef, { title, veune, max, Alert, num, user, totalIn: 0, totalOuut:0 })
+      alert('event added succefully')
+      allEvent.push({ title, veune, max, Alert, num, user, totalIn: 0, totalOuut:0 })
+      displaydata()
+      create.style.display = 'none'
+    
+
+    } catch (err) {
+      console.log(err);
+    }
+      
+  }
+
+            // display all event that ws create by current user
+  function displaydata() {
+    myEvent.innerHTML =''
+    allEvent.forEach((ele, i) => {
+      if (ele.user == userEmail2.innerHTML) {
+        myEvent.innerHTML += `
+                <div>
+                    <p class="title">${ele.title}</p>
+                    <div class="detals">
+                       <p>ENTRIES</p>
+                       <p>MAX PARTICIPANTS </p>
+                       <p>Total PARTICIPANTS </p>
+                    </div>
+                    <div class="detals2">
+                      <p>${ele.num}</p>
+                      <p>${ele.max} </p>
+                      <p>${ele.Alert} </p>
+                   </div>
+                   <a href="../HTML file/eventStatities.html?id=${ele.id}" ><button>See More</button></a>
+                   <span id="${ele.id}""> Delete</span>
+                `
+      }
+    })
+  }
+  logout.addEventListener('click', logoutUser)
+  logout2.addEventListener('click', logoutUser)
+  window.addEventListener('load', checkAuthStatus)
+  CreateEvent.addEventListener('submit', CreateEventTab)
+
+
+
+        // deleting the event create by current user
+  myEvent.addEventListener('click', (e) =>{
+    console.log(e);
+    if (e.target.nodeName == 'SPAN') {
+      // console.log(e.target.id);
+      async function deleteEvent(id) {
+      const docRef = doc(db, 'Event', id)
+      await deleteDoc(docRef)
+        alert('Event Delete Successfully')
+     allEvent.forEach((ele, i) => {
+       if (ele.id == id) {
+         allEvent.splice(i, 1)
+       }
+     })
+        displaydata()
+      }
+      deleteEvent(e.target.id)
+    }
+  })
+</script>
+
+
+        <!-- this second script is to create onclick function directly -->
+<script>
+  function noneIt() {
+    section1.style.display = 'none'
+    section2.style.display = 'none'
+    section.style.display = 'block'
+  }
+  function bringIt() {
+    section1.style.display = 'block'
+    section2.style.display = 'block'
+    section.style.display = 'none'
+  }
+  function popUpCreateEvent() {
+    create.style.display = 'block'
+  }
+  function cancelCreateEvent(e) {
+    e.preventDefault();
+    create.style.display = 'none'
+
+  }
+  but3.addEventListener('click', cancelCreateEvent)
+
+
+
+
+</script>
+
+
+
+</html>

@@ -1,0 +1,615 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: #274D76;
+  padding: 10px;
+  color: white;
+}
+
+#eventTitle {
+  margin: 10px 35px;
+  font-weight: 1000;
+  font-size: 25px;
+}
+
+.section1 {
+  width: 100%;
+}
+.section1 .sta {
+  width: 95%;
+  margin: auto;
+  height: 132px;
+  background-color: #E5E5E5;
+  margin-top: 30px;
+  border-radius: 8px;
+}
+.section1 .sta #current {
+  display: flex;
+  width: 95%;
+  justify-content: space-between;
+  margin: auto;
+  padding-top: 15px;
+}
+.section1 .sta img {
+  width: 97%;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+.section1 .sta .details {
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+  width: 95%;
+  margin-top: 10px;
+}
+.section1 .sta .details2 {
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+  width: 90%;
+  margin-top: 10px;
+  margin-right: 5%;
+  font-size: 15px;
+  font-weight: 800;
+}
+.section1 .sta .details2 #totalOut {
+  margin-right: 50px;
+}
+.section1 .sta .details2 #closedEn {
+  margin-right: 45px;
+}
+
+.section2 #entry {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 95%;
+  margin: auto;
+}
+.section2 #entry div {
+  width: 80%;
+  background-color: #E5E5E5;
+  text-align: center;
+  border-radius: 10px;
+  margin-top: 30px;
+  padding-bottom: 10px;
+}
+.section2 #entry div #gate {
+  font-size: 20px;
+  font-weight: 800;
+  margin-top: 35px;
+}
+.section2 #entry div .in1 {
+  margin-top: 20px;
+}
+.section2 #entry div #InNum {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 800;
+}
+.section2 #entry div .out {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.section2 #entry div #outNum {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.section2 #entry div #open {
+  padding: 5px 20px;
+  border-radius: 6px;
+  border: none;
+  background-color: green;
+  color: #E5E5E5;
+}
+
+#section3 {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5490196078);
+  position: absolute;
+  top: 0;
+  display: none;
+}
+#section3 .subSection .allDoorsetting {
+  width: 700px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  background-color: white;
+  margin: 60px auto;
+}
+#section3 .subSection .allDoorsetting .myImg {
+  float: right;
+  padding: 20px 20px;
+}
+#section3 .subSection .allDoorsetting h2 {
+  padding-top: 40px;
+  text-align: center;
+  color: black;
+  padding-bottom: 30px;
+}
+#section3 .subSection .allDoorsetting .door {
+  width: 568px;
+  background-color: #E5E5E5;
+  margin: auto;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+}
+#section3 .subSection .allDoorsetting .door p {
+  padding: 10px 20px;
+}
+#section3 .subSection .allDoorsetting .door #doorNumber {
+  width: 300px;
+  margin-left: 20px;
+  border: thin solid rgba(39, 77, 118, 0.4431372549);
+  padding: 15px 0;
+  border-radius: 5px;
+  background-color: #E5E5E5;
+}
+#section3 .subSection .allDoorsetting .door input {
+  width: 300px;
+  margin-left: 20px;
+  border: thin solid rgba(39, 77, 118, 0.4431372549);
+  padding: 15px 0;
+  border-radius: 5px;
+  background-color: #E5E5E5;
+  height: 20px;
+}
+#section3 .subSection .allDoorsetting .container {
+  position: relative;
+  margin-top: 50px;
+}
+#section3 .subSection .allDoorsetting .center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#section3 .subSection .allDoorsetting .center button {
+  width: 560px;
+  height: 55px;
+  border-radius: 8px;
+  border: none;
+  background-color: #274D76;
+  color: white;
+  font-weight: 400;
+}
+#section3 .subSection .allDoorsetting .per {
+  text-align: center;
+}
+#section3 .subSection .allDoorsetting #keeperrr {
+  width: 80%;
+  background-color: #E5E5E5;
+  margin: auto;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  padding-bottom: 1px;
+  padding: 0 20px;
+}
+#section3 .subSection .allDoorsetting #keeperrr .funje {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#section3 .subSection .allDoorsetting #keeperrr .funje #keeperIDname {
+  padding: 10px 3px;
+}
+#section3 .subSection .allDoorsetting #keeperrr .funje #keeperEmail {
+  margin-top: 0;
+  width: 5%;
+}
+#section3 .subSection .allDoorsetting #keeperrr .funje .btn {
+  border: 1px solid #274D76;
+  background-color: rgba(0, 0, 255, 0);
+  height: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+#section3 .subSection .allDoorsetting #keeperrr .funje .btn img {
+  width: 100%;
+}
+
+#modal {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.422);
+  height: 200vh;
+  z-index: 5;
+}
+#modal div {
+  margin: auto;
+  top: 220px;
+  width: 400px;
+  background-color: #ffffff;
+  height: 150px;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 2px #274D76;
+}
+#modal div #moadlWord {
+  padding-top: 35px;
+  font-size: 25px;
+  padding-bottom: 30px;
+}
+#modal div button {
+  padding: 7px 40px;
+  background-color: #274D76;
+  color: #E5E5E5;
+  border-radius: 6px;
+  border: none;
+  font-size: 15px;
+}
+
+#dropUp {
+  position: absolute;
+  width: 100%;
+  animation: moveFromTop 0.8s ease-in-out forwards;
+  top: 50px;
+}
+#dropUp p {
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  width: 30%;
+  background-color: #660505;
+  border-radius: 5px;
+  margin: auto;
+}
+
+@keyframes moveFromTop {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 100px;
+  }
+}
+@media (max-width: 390px) {
+  .section1 {
+    width: 100%;
+  }
+  .section1 .sta {
+    width: 95%;
+    margin: auto;
+    height: 132px;
+    background-color: #E5E5E5;
+    margin-top: 30px;
+    border-radius: 8px;
+  }
+  .section1 .sta #current {
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+    margin: auto;
+    padding-top: 15px;
+  }
+  .section1 .sta img {
+    width: 97%;
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+  .section1 .sta .details {
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    width: 95%;
+    margin-top: 10px;
+  }
+  .section1 .sta .details2 {
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 10px;
+    margin-right: 5%;
+    font-size: 12px;
+  }
+  .section1 .sta .details2 #totalOut {
+    margin-right: 30px;
+  }
+  .section1 .sta .details2 #closedEn {
+    margin-right: 45px;
+  }
+}
+@media (max-width: 800px) {
+  .section2 #entry {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 95%;
+    margin: auto;
+  }
+  .section2 #entry div {
+    width: 80%;
+    background-color: #E5E5E5;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+  }
+  .section2 #entry div #gate {
+    font-size: 20px;
+    font-weight: 800;
+    margin-top: 35px;
+  }
+  .section2 #entry div .in1 {
+    margin-top: 20px;
+  }
+  .section2 #entry div #InNum {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .section2 #entry div .out {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .section2 #entry div #outNum {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+  .section2 #entry div #open {
+    padding: 5px 20px;
+    border-radius: 6px;
+    border: none;
+    background-color: green;
+    color: #E5E5E5;
+  }
+}
+@media (max-width: 400px) {
+  .section2 {
+    margin-left: 40px;
+  }
+  .section2 #entry {
+    display: block;
+    width: 100%;
+  }
+  .section2 #entry div {
+    width: 90%;
+    background-color: #E5E5E5;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+  }
+  .section2 #entry div #gate {
+    font-size: 20px;
+    font-weight: 800;
+    padding-top: 35px;
+  }
+  .section2 #entry div .in1 {
+    margin-top: 20px;
+  }
+  .section2 #entry div #InNum {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .section2 #entry div .out {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .section2 #entry div #outNum {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+  .section2 #entry div #open {
+    padding: 5px 20px;
+    border-radius: 6px;
+    border: thick solid white;
+    background-color: green;
+    color: #E5E5E5;
+  }
+  #section3 {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5490196078);
+    position: absolute;
+    top: 0;
+  }
+  #section3 .subSection .allDoorsetting {
+    width: 700px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    background-color: white;
+    margin: 60px auto;
+  }
+  #section3 .subSection .allDoorsetting .myImg {
+    float: right;
+    padding: 20px 20px;
+  }
+  #section3 .subSection .allDoorsetting h2 {
+    padding-top: 40px;
+    text-align: center;
+    color: black;
+    padding-bottom: 30px;
+  }
+  #section3 .subSection .allDoorsetting .door {
+    width: 568px;
+    background-color: #E5E5E5;
+    margin: auto;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+  }
+  #section3 .subSection .allDoorsetting .door p {
+    padding: 10px 20px;
+  }
+  #section3 .subSection .allDoorsetting .door #doorNumber {
+    width: 300px;
+    margin-left: 20px;
+    border: thin solid rgba(39, 77, 118, 0.4431372549);
+    padding: 15px 0;
+    border-radius: 5px;
+    background-color: #E5E5E5;
+  }
+  #section3 .subSection .allDoorsetting .door input {
+    width: 300px;
+    margin-left: 20px;
+    border: thin solid rgba(39, 77, 118, 0.4431372549);
+    padding: 15px 0;
+    border-radius: 5px;
+    background-color: #E5E5E5;
+    height: 20px;
+  }
+  #section3 .subSection .allDoorsetting .container {
+    position: relative;
+    margin-top: 50px;
+  }
+  #section3 .subSection .allDoorsetting .center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #section3 .subSection .allDoorsetting .center button {
+    width: 560px;
+    height: 55px;
+    border-radius: 8px;
+    border: none;
+    background-color: #274D76;
+    color: white;
+    font-weight: 400;
+  }
+  #section3 .subSection .allDoorsetting .per {
+    text-align: center;
+  }
+  #section3 .subSection .allDoorsetting #keeperrr {
+    width: 90%;
+    background-color: #E5E5E5;
+    margin: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    padding-bottom: 1px;
+    padding: 0 20px;
+  }
+  #section3 .subSection .allDoorsetting #keeperrr .funje {
+    display: flex;
+    justify-content: space-between;
+  }
+  #section3 .subSection .allDoorsetting #keeperrr .funje #keeperIDname {
+    padding: 10px 30px;
+  }
+  #section3 .subSection .allDoorsetting #keeperrr .funje #keeperEmail {
+    margin-top: 0;
+    font-size: 18px;
+  }
+  #section3 .subSection .allDoorsetting #keeperrr .funje img {
+    width: 5%;
+    height: 30%;
+    margin-top: 18px;
+  }
+}
+@media (max-width: 720px) {
+  #section3 {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5490196078);
+    position: absolute;
+    top: 0;
+  }
+  #section3 .subSection .allDoorsetting {
+    padding-bottom: 20px;
+    border-radius: 10px;
+    background-color: white;
+    margin: 60px auto;
+    width: 95%;
+  }
+  #section3 .subSection .allDoorsetting .myImg {
+    float: right;
+    padding: 20px 20px;
+  }
+  #section3 .subSection .allDoorsetting h2 {
+    padding-top: 40px;
+    text-align: center;
+    margin-left: 45px;
+    color: black;
+    padding-bottom: 30px;
+  }
+  #section3 .subSection .allDoorsetting .door {
+    width: 95%;
+    margin: auto;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+  }
+  #section3 .subSection .allDoorsetting .door p {
+    padding: 10px 20px;
+  }
+  #section3 .subSection .allDoorsetting .door #doorNumber {
+    width: 90%;
+    margin-left: 20px;
+    border: thin solid rgba(39, 77, 118, 0.4431372549);
+    padding: 15px 0;
+    border-radius: 5px;
+    background-color: #E5E5E5;
+    height: 20px;
+  }
+  #section3 .subSection .allDoorsetting .door #doorNumber:focus {
+    outline: #274D76;
+  }
+  #section3 .subSection .allDoorsetting .door input {
+    width: 90%;
+    margin-left: 20px;
+    border: thin solid rgba(39, 77, 118, 0.4431372549);
+    padding: 15px 0;
+    border-radius: 5px;
+    background-color: #E5E5E5;
+    height: 20px;
+  }
+  #section3 .subSection .allDoorsetting .container {
+    position: relative;
+    margin-top: 50px;
+    width: 100%;
+  }
+  #section3 .subSection .allDoorsetting .center {
+    margin: 0;
+    position: absolute;
+    width: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #section3 .subSection .allDoorsetting .center button {
+    width: 95%;
+    height: 55px;
+    border-radius: 8px;
+    border: none;
+    background-color: #274D76;
+    color: white;
+    font-weight: 400;
+  }
+  #section3 .subSection .allDoorsetting #keeper {
+    width: 90%;
+    background-color: #E5E5E5;
+    margin: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding-bottom: 1px;
+  }
+  #section3 .subSection .allDoorsetting #keeper #keeperID {
+    padding: 10px 30px;
+  }
+  #section3 .subSection .allDoorsetting #keeper #keeperEmail {
+    margin-top: 0;
+    font-size: 20px;
+  }
+}

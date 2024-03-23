@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/forgot.css">
+    <!-- <link rel="stylesheet" href="/LogIn.html"> -->
+    <title>Forget Password</title>
+</head>
+<body>
+    <section class="section1">
+        <div class="welcome">
+           <img src="../images/create account.png" alt="create account">
+             <p class="wel" >Forget Password</p>
+
+             <form name="loginForm" >
+
+                   <div class="mmail">
+                       <p>Email</p>
+                       <input type="email" name="email" placeholder="favourtobiloba@gmail.com">
+                   </div>
+                   <p id="infom" style="color: red;"></p>
+
+                   <button type="submit" class="but1">
+                       submit
+                   </button>
+
+             </form>
+            <a href="../LogIn.html"><button class="but2">login</button></a> 
+             <!-- <input type="text" placeholder="lksnamc;ln;L"> -->
+        </div>
+   </section>
+</body>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, sendPasswordResetEmail} from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+    const firebaseConfig = {
+      apiKey: "AIzaSyCalI8CYfC_Z-nRa3QIqghkcuSmv7E1Jow",
+      authDomain: "event-management-6803d.firebaseapp.com",
+      projectId: "event-management-6803d",
+      storageBucket: "event-management-6803d.appspot.com",
+      messagingSenderId: "78880001605",
+      appId: "1:78880001605:web:c46e3d5dd010eeda959d2c"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app)
+
+    function handlePasswordReset(e) {
+             e.preventDefault();
+            const emailAddress = loginForm.email.value
+            console.log(emailAddress);
+ 
+            sendPasswordResetEmail(auth, emailAddress)
+            
+            .then(function() {
+            // Password reset email sent
+            infom.innerHTML = 'Password reset email sent successfully.'
+            console.log("Password reset email sent successfully.");
+            })
+            .catch(function(error) {
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            // console.error("Error sending password reset email:", errorMessage);
+            infom.innerHTML = "Error sending password reset email:", errorMessage
+            // load1.hidden = false
+            });
+            // load1.hidden = true
+        }
+        loginForm.addEventListener ('submit', handlePasswordReset)
+
+  </script>
+</html>

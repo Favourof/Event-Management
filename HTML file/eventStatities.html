@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Staticties</title>
+    <link rel="stylesheet" href="../css/eventStatities.css" />
+    <style></style>
+  </head>
+
+  <body>
+    <div id="modal" hidden>
+      <div>
+        <h6 id="moadlWord">jgdiojgf</h6>
+        <button onclick="hidenModal()">okay</button>
+      </div>
+    </div>
+    <nav>
+      <a href="./landingPage.html"
+        ><img src="../images/chevron-left 1.png" alt="chevron-left"
+      /></a>
+      <p id="evnrnTitle">Event Title</p>
+      <!-- <img src="../images/Vector.png" alt="vector" id="confImage" /> -->
+      <p id="confImage">update</p>
+    </nav>
+    <h3 id="eventTitle">EVENT STATISTICS</h3>
+    <section class="section1">
+      <div class="sta">
+        <div id="current">
+          <p>Current in</p>
+          <div><span id="maxIn"></span>/<span id="maxOut"></span></div>
+        </div>
+        <img src="../images/Group 34.png" alt="Group" />
+        <div class="details">
+          <p>Total in</p>
+          <p>Total out</p>
+          <p>Closed entyry</p>
+          <p>Open entry</p>
+        </div>
+        <div class="details2">
+          <p id="totalIn">5</p>
+          <p id="totalOut">6</p>
+          <p id="closedEn">
+            <span id="num">0</span>/<span id="Allgate"></span>
+          </p>
+          <p id="openEn">0</p>
+        </div>
+      </div>
+    </section>
+    <section class="section2">
+      <h3>ENTRIES</h3>
+      <div id="entry"></div>
+    </section>
+
+    <section id="section3">
+      <div class="subSection">
+        <div class="allDoorsetting">
+          <img
+            src="../images/config.png"
+            alt="x"
+            class="myImg"
+            onclick="modacross()"
+            id="dissmiss"
+          />
+          <h2>Entry config</h2>
+          <form name="getdoordetail">
+            <div class="door">
+              <p>Door keeper’s id</p>
+
+              <select name="doorID" id="doorNumber" required>
+                <!-- <option value="">selelet nzme</option> -->
+              </select>
+            </div>
+
+            <div class="door">
+              <p>door keeper’s email</p>
+              <input
+                type="email"
+                name="keeperMal"
+                placeholder="Some email address"
+                id="keepermail"
+                required
+              />
+            </div>
+            <div class="container">
+              <div class="center">
+                <button id="addKeepr" type="submit">Add Keeper</button>
+              </div>
+            </div>
+          </form>
+          <h2 class="per">keeper(s)</h2>
+          <div id="keeperrr"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- modal -->
+
+    <!-- <button onclick="release()">kwvnrinv3pwrvner</button> -->
+  </body>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      getDoc,
+      addDoc,
+      doc,
+      updateDoc,
+      deleteDoc,
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyCalI8CYfC_Z-nRa3QIqghkcuSmv7E1Jow",
+      authDomain: "event-management-6803d.firebaseapp.com",
+      projectId: "event-management-6803d",
+      storageBucket: "event-management-6803d.appspot.com",
+      messagingSenderId: "78880001605",
+      appId: "1:78880001605:web:c46e3d5dd010eeda959d2c",
+    };
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const eventId = urlParams.get("id");
+    const app = initializeApp(firebaseConfig);
+    //   const auth = getAuth(app)
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    const eventRef = doc(db, "Event", eventId);
+    let keeps;
+    let numofArray;
+    let userss;
+    let gateg;
+
+    let keeperRef;
+
+    console.log(keeperRef);
+
+    async function getSingleEvent() {
+      const res = await getDoc(eventRef);
+      const data = res.data();
+      maxIn.innerHTML = data.Alert;
+      maxOut.innerHTML = data.max;
+      Allgate.innerHTML = data.num;
+      evnrnTitle.innerHTML = data.title;
+      totalIn.innerHTML = data.totalIn;
+      totalOut.innerHTML = data.totalOut;
+      keeps = data.title;
+      console.log(data);
+      getAllEventfromDB();
+    }
+    getSingleEvent();
+    // checkAuthStatus()
+
+    async function checkAuthStatus() {
+      await onAuthStateChanged(auth, (currentUser) => {
+        if (currentUser) {
+          // console.log('user is', currentUser);
+          userss = currentUser.email;
+        }
+      });
+      getKeeperDetails();
+      // configSet();
+    }
+
+    let allEvent = [];
+
+    async function getAllEventfromDB() {
+      let Dkeepers = [];
+      keeperRef = collection(db, `${keeps}`);
+      const res = await getDocs(keeperRef);
+      res.forEach((keeper) => {
+        Dkeepers.push({ ...keeper.data(), id: keeper.id });
+      });
+      entry.innerHTML = "";
+      Dkeepers.forEach((ele) => {
+        entry.innerHTML += `
+                        <div>
+                            <p id="gate"  >${ele.keepermail}</p>
+                            <p class="in1">${ele.doorID}</p>
+                            <p class="in1">Total In </p>
+                            <p id="InNum">${ele.totalIn}</p>
+                            <p class="out">Total Out</p>
+                            <p id="outNum">${ele.totalOut}</p>
+                            <button id="open">open</button>
+
+                        </div>
+                        `;
+      });
+    }
+    getAllEventfromDB();
+    function configSet() {
+      section3.style.display = "block";
+      for (let i = 1; i <= Allgate.textContent; i++) {
+        doorNumber.innerHTML += ` <option value="Entry #${[i]}" >Entry #${[
+          i,
+        ]}</option>`;
+      }
+      // console.log('i am here');
+      keeperRef = collection(db, `${keeps}`);
+      getKeeperDetails();
+    }
+    // getKeeperDetails();
+
+    async function assginGateKeeper(e) {
+      console.log(keeperRef);
+      e.preventDefault();
+      const doorID = getdoordetail.doorID.value;
+      const keepermail = getdoordetail.keeperMal.value;
+      const adimMail = userss;
+      const keep = keeps;
+
+      try {
+        const saveKeeper = addDoc(keeperRef, {
+          doorID,
+          keepermail,
+          adimMail,
+          totalIn: 0,
+          totalOut: 0,
+        });
+        // alert('add successfully')
+        modal.hidden = false;
+        moadlWord.innerHTML = "Add successfully";
+        getKeeperDetails();
+      } catch (error) {
+        console.log(error);
+      }
+      console.log(doorID, keepermail);
+    }
+
+    async function getKeeperDetails() {
+      let doorKeepers = [];
+      const res = await getDocs(keeperRef);
+      let allTOtallIn = [];
+      let allTOtallOut = [];
+      res.forEach((keeper, i) => {
+        allTOtallIn.push(Number(keeper.data().totalIn));
+        allTOtallOut.push(Number(keeper.data().totalOut));
+
+        if (doorKeepers.length == Allgate.textContent - 1) {
+          addKeepr.style.display = "none";
+        }
+        doorKeepers.push({ ...keeper.data(), id: keeper.id });
+      });
+      openEn.innerHTML = doorKeepers.length;
+      keeperrr.innerHTML = "";
+      entry.innerHTML = "";
+      doorKeepers.forEach((ele, i) => {
+        if (ele.adimMail == userss) {
+          keeperrr.innerHTML += `
+      <div class=funje>
+        <div>
+                <p id="keeperIDname">${ele.doorID}</p>
+                <h3 id="keeperEmail">${ele.keepermail}</h3>
+                </div>
+                <button class='btn' id='${ele.id}'>del</button>  
+              
+            </div>
+
+            
+      `;
+
+          entry.innerHTML += `
+          <div>
+          <p id="gate"  >${ele.keepermail}</p>
+          <p class="in1">${ele.doorID}</p>
+          <p class="in1">Total In </p>
+          <p id="InNum">${ele.totalIn}</p>
+           <p class="out">Total Out</p>
+            <p id="outNum">${ele.totalOut}</p>
+           <button id="open">open</button>
+
+            </div>
+              `;
+        }
+      });
+      let sum = allTOtallIn.reduce(function (x, y) {
+        return y + x;
+      }, 0);
+      let sum2 = allTOtallOut.reduce(function (x, y) {
+        return y + x;
+      }, 0);
+      totalIn.innerHTML = sum;
+      totalOut.innerHTML = sum2;
+      // console.log(gate.textContent, 'oooooo');
+
+      getAllBtns();
+
+      // getAllEventfromDB(doorKeepers)
+    }
+    function modacross() {
+      section3.style.display = "none";
+      doorNumber.innerHTML = "";
+    }
+
+    const deleteGateKeeper = async (id) => {
+      // const colRd = collection(db, eventId )
+      // console.log(id);
+      const gateRef = doc(keeperRef, id);
+
+      await deleteDoc(gateRef);
+      // alert('document deleted succefully')
+      modal.hidden = false;
+      moadlWord.innerHTML = "Deleted succefully";
+    };
+
+    const getAllBtns = () => {
+      const btns = document.querySelectorAll(".btn");
+      // gateg = document.querySelectorAll('.gatess')
+      // console.log('this all', gateg);
+      btns.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          deleteGateKeeper(e.target.id);
+
+          getKeeperDetails();
+          addKeepr.style.display = "block";
+        });
+      });
+    };
+
+    window.addEventListener("load", checkAuthStatus);
+    dissmiss.addEventListener("click", modacross);
+    confImage.addEventListener("click", configSet);
+    getdoordetail.addEventListener("submit", assginGateKeeper);
+  </script>
+  <script>
+    function hidenModal() {
+      modal.hidden = true;
+    }
+  </script>
+</html>
