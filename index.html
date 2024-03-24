@@ -10,7 +10,7 @@
     <nav>
       <h6 class="title">Event Manahement</h6>
       <ul>
-        <a href="" class="a1"><li>Login</li></a>
+        <a href="#login" class="a1"><li>Login</li></a>
         <a href="" class="a2"><li>LogOut</li></a>
       </ul>
     </nav>
@@ -27,7 +27,7 @@
             attendance tracking, streamlining event organization like never
             before.
           </p>
-          <button id="but1">Get Start</button>
+          <a href="#login"><button id="but1">Get Start</button></a>
         </div>
       </div>
     </section>
@@ -50,12 +50,12 @@
     <div class="section3">
       <div class="subsect">
         <div class="sect1">
-          <h1>Mange Event</h1>
+          <h1 id="login">Mange Event</h1>
           <p>
             Sign In by managing Event by monitoring event, tracking the
             attendace, welcome to the ultimate solution.
           </p>
-          <button id="but1">Get Start</button>
+          <button id="but1" onclick="getStarted('event')">Get Start</button>
         </div>
         <div class="sect2">
           <h1>Gate Keeper</h1>
@@ -63,9 +63,19 @@
             Sign in by monitoring the in and out of the event, by tracking the
             attendace.
           </p>
-          <button id="but2">Get Start</button>
+          <button id="but2" onclick="getStarted('gate')">Get Start</button>
         </div>
       </div>
     </div>
   </body>
 </html>
+
+<script>
+  function getStarted(param) {
+    if (param == "event") {
+      window.location.href = "./LogIn.html";
+    } else {
+      window.location.href = "https://favourof.github.io/Gate-Keeper-App/login.html";
+    }
+  }
+</script>
